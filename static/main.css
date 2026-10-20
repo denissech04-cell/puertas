@@ -1,45 +1,453 @@
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    background: #183536;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
+.gallery {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+    gap: clamp(1rem, 4vw, 3rem);
+    width: min(100%, 1200px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 5vw, 4rem);
 }
 
-.App {
+.gallery img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.gallery a:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+}
+
+.door-page {
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: clamp(1rem, 4vw, 3rem);
+}
+
+.door-page a {
+    display: block;
+    width: min(100%, 800px);
+}
+
+.door-page img {
+    display: block;
+    width: min(100%, 800px);
+    height: auto;
+}
+
+.door-page a:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+}
+
+.result-page {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+   /* overflow: hidden;*/
+}
+
+.result-page a:not(.choose-again) {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.result-page img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.choose-again {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    background: rgb(0 0 0 / 75%);
+    color: #fff;
+    font: inherit;
+    text-decoration: none;
+}
+
+.result-audio {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    z-index: 1;
+    width: min(90%, 24rem);
+    transform: translateX(-50%);
+}
+
+.choose-again:hover {
+   /* background: #000;*/
+}
+
+.choose-again:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+.door-result[hidden] {
+   /* display: none;*/
+}
+
+.result-page a:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: -3px;
+}
+
+.scream-image {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+   /* overflow: hidden;*/
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+  /*  overflow: hidden;*/
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+.door-options {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: clamp(1rem, 4vw, 3rem);
+    width: min(100%, 1000px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 5vw, 4rem);
+}
+
+.door-options a {
+    display: block;
+}
+
+.door-options img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.door-options a:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+}
+
+@media (max-width: 700px) {
+    .gallery,
+    .door-options {
+        grid-template-columns: 1fr;
+        width: min(100%, 420px);
+    }
+}
+
+.game-cover {
+    box-sizing: border-box;
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    min-height: 100dvh;
+    place-items: center;
+    overflow: hidden;
+    padding: 3rem 1.5rem 7rem;
+    background:
+        radial-gradient(ellipse at 50% 38%, rgb(74 119 91 / 28%), transparent 52%),
+        linear-gradient(180deg, #183536 0%, #102526 100%);
+    color: #fff4d6;
+    font-family: "Courier New", monospace;
     text-align: center;
 }
 
-.App-logo {
-    height: 40vmin;
+.game-cover::before,
+.game-cover::after {
+    position: absolute;
+    width: 18rem;
+    height: 18rem;
+    border: 1px solid rgb(246 190 91 / 12%);
+    content: "";
     pointer-events: none;
+    transform: rotate(45deg);
 }
 
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
+.game-cover::before {
+    top: -13rem;
+    left: -10rem;
+}
+
+.game-cover::after {
+    right: -10rem;
+    bottom: -13rem;
+}
+
+.cover-content {
+    width: min(100%, 48rem);
+}
+
+.cover-eyebrow {
+    margin: 0 0 0.8rem;
+    color: #a8c98e;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.cover-content h1,
+.doors-heading h1 {
+    margin: 0;
+    color: #fff4d6;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    line-height: 0.98;
+    text-shadow: 4px 4px 0 #532d20;
+    text-transform: uppercase;
+}
+
+.cover-content h1 span {
+    display: block;
+    color: #f6be5b;
+}
+
+.cover-description {
+    max-width: 34rem;
+    margin: 1rem auto 0;
+    color: #d1d8c0;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    line-height: 1.6;
+}
+
+.cover-doors {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    height: clamp(8rem, 25vw, 13rem);
+    align-items: end;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    gap: clamp(0.8rem, 5vw, 3rem);
+    margin: 1rem auto 1.5rem;
 }
 
-.App-link {
-    color: #61dafb;
+.cover-doors img {
+    width: auto;
+    max-width: 25%;
+    height: 85%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0.5rem 0.6rem rgb(0 0 0 / 35%));
+    animation: door-glow 3s ease-in-out infinite alternate;
 }
 
-.heart {
-    color: #ff0000;
+.cover-doors img:nth-child(2) {
+    height: 100%;
+    animation-delay: 0.7s;
 }
 
-.small {
-    font-size: 0.75rem;
+.cover-doors img:nth-child(3) {
+    animation-delay: 1.4s;
+}
+
+.main-menu {
+    display: grid;
+    width: min(100%, 17rem);
+    gap: 0.7rem;
+    margin: 0 auto;
+}
+
+.menu-button {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border: 2px solid #b98243;
+    padding: 0.85rem 1.2rem;
+    background: #34251f;
+    color: #fff4d6;
+    cursor: pointer;
+    font: 700 1rem "Courier New", monospace;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.menu-button:hover {
+    background: #533a2a;
+    transform: translateY(-2px);
+}
+
+.menu-button-primary {
+    border-color: #f6be5b;
+    background: #854d27;
+    color: #fff7db;
+}
+
+.menu-button-primary:hover {
+    background: #a9622e;
+}
+
+.menu-button:focus-visible,
+.back-to-menu:focus-visible {
+    outline: 3px solid #a8c98e;
+    outline-offset: 4px;
+}
+
+.credits {
+    position: absolute;
+    right: 1.25rem;
+    bottom: 1rem;
+    margin: 0;
+    color: #d1d8c0;
+    font-size: 0.72rem;
+    line-height: 1.55;
+    text-align: right;
+}
+
+.menu-dialog {
+    width: min(24rem, calc(100% - 3rem));
+    border: 2px solid #b98243;
+    padding: 1.5rem;
+    background: #183536;
+    color: #fff4d6;
+    font-family: "Courier New", monospace;
+}
+
+.menu-dialog::backdrop {
+    background: rgb(0 0 0 / 75%);
+}
+
+.menu-dialog h2 {
+    margin-top: 0;
+    color: #f6be5b;
+}
+
+.menu-dialog p {
+    line-height: 1.6;
+}
+
+.menu-dialog form {
+    display: grid;
+    gap: 1rem;
+}
+
+.setting-option {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    line-height: 1.5;
+}
+
+.setting-option input {
+    width: 1.15rem;
+    height: 1.15rem;
+    accent-color: #a8c98e;
+}
+
+.doors-screen {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background:
+        radial-gradient(ellipse at 50% 42%, rgb(74 119 91 / 24%), transparent 55%),
+        #183536;
+    color: #fff4d6;
+    font-family: "Courier New", monospace;
+}
+
+.back-to-menu {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid #b98243;
+    background: #34251f;
+    color: #fff4d6;
+    text-decoration: none;
+}
+
+.doors-heading {
+    padding: 5rem 1rem 0;
+    text-align: center;
+}
+
+.doors-heading h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+.doors-screen .gallery {
+    min-height: 65vh;
+}
+
+.doors-screen .gallery img {
+    filter: drop-shadow(0 0.75rem 0.8rem rgb(0 0 0 / 35%));
+    transition: transform 180ms ease, filter 180ms ease;
+}
+
+.doors-screen .gallery a:hover img {
+    filter: drop-shadow(0 0 1rem rgb(246 190 91 / 55%));
+    transform: translateY(-0.5rem);
+}
+
+body.reduce-motion *,
+body.reduce-motion *::before,
+body.reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+}
+
+@keyframes door-glow {
+    from {
+        filter: drop-shadow(0 0.3rem 0.4rem rgb(0 0 0 / 35%));
+        transform: translateY(0);
+    }
+
+    to {
+        filter: drop-shadow(0 0 0.9rem rgb(246 190 91 / 35%));
+        transform: translateY(-0.35rem);
+    }
+}
+
+@media (max-width: 700px) {
+    .doors-screen .gallery {
+        padding-top: 1rem;
+    }
+
+    .credits {
+        right: 0.75rem;
+        bottom: 0.65rem;
+        font-size: 0.62rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cover-doors img {
+        animation: none;
+    }
+
+    .menu-button,
+    .doors-screen .gallery img {
+        transition: none;
+    }
 }

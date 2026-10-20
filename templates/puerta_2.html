@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Puerta 2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <main class="door-options" aria-label="Elige una puerta">
+        <a href="{{ url_for('puerta_4', resultado='meta') }}" aria-label="Elegir la primera puerta"
+            data-sound="victory">
+            <img src="{{ url_for('static', filename='puerta pt2.png') }}" alt="Primera puerta">
+        </a>
+        <a href="{{ url_for('puerta_4', resultado='sin-salida') }}" aria-label="Elegir la segunda puerta"
+            data-sound="spooky">
+            <img src="{{ url_for('static', filename='puertapt2.png') }}" alt="Segunda puerta">
+        </a>
+    </main>
+    <p class="visually-hidden" aria-live="polite" data-sound-status></p>
+    <script src="{{ url_for('static', filename='door-sounds.js') }}" defer></script>
+</body>
+</html>

@@ -1,19 +1,56 @@
+<!doctype html>
+<html lang="es">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-
+    <script src="{{ url_for('static', filename='menu.js') }}" defer></script>
+</head>
 <body>
-    <div class="App">
-        <header class="App-header">
-            <img src="{{ url_for('static', filename='Octocat.png') }}" class="App-logo" alt="logo" />
-            <p>
-                GitHub Codespaces <span class="heart">♥️</span> Flask
-            </p>
-            <p class="small">
-                Edit <code>templates/index.html</code> and refresh to see your changes!
-            </p>
-        </header>
-    </div>
-</body>
+    <main class="game-cover">
+        <section class="cover-content" aria-labelledby="game-title">
+            <p class="cover-eyebrow">Una aventura entre mundos</p>
+            <h1 id="game-title">Las tres <span>puertas</span></h1>
+            <p class="cover-description">Cada puerta es un camino. Elige con cuidado lo que hay al otro lado.</p>
 
+            <div class="cover-doors" aria-hidden="true">
+                <img src="{{ url_for('static', filename='1.png') }}" alt="">
+                <img src="{{ url_for('static', filename='2.png') }}" alt="">
+                <img src="{{ url_for('static', filename='3.png') }}" alt="">
+            </div>
+
+            <nav class="main-menu" aria-label="Menú principal">
+                <a class="menu-button menu-button-primary" href="{{ url_for('puertas') }}">Jugar</a>
+                <button class="menu-button" type="button" data-open-dialog="settings-dialog">Ajustes</button>
+                <button class="menu-button" type="button" data-open-dialog="help-dialog">Cómo jugar</button>
+            </nav>
+        </section>
+
+        <p class="credits">
+            Cervantes Ramos Yendy Beatroz<br>
+            Chacon Sanchez Denisse<br>
+            Palafox Ramirez Elvia Paloma
+        </p>
+    </main>
+
+    <dialog class="menu-dialog" id="settings-dialog" aria-labelledby="settings-title">
+        <form method="dialog">
+            <h2 id="settings-title">Ajustes</h2>
+            <label class="setting-option">
+                <input type="checkbox" data-reduce-motion>
+                Reducir animaciones
+            </label>
+            <button class="menu-button menu-button-primary" type="submit">Listo</button>
+        </form>
+    </dialog>
+
+    <dialog class="menu-dialog" id="help-dialog" aria-labelledby="help-title">
+        <form method="dialog">
+            <h2 id="help-title">Cómo jugar</h2>
+            <p>Presiona <strong>Jugar</strong> y elige una de las tres puertas para comenzar tu aventura.</p>
+            <button class="menu-button menu-button-primary" type="submit">Entendido</button>
+        </form>
+    </dialog>
+</body>
 </html>

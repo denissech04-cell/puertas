@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Elige una puerta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <main class="doors-screen">
+        <a class="back-to-menu" href="{{ url_for('hello_world') }}">Volver al menú</a>
+        <header class="doors-heading">
+            <p class="cover-eyebrow">Tu aventura comienza aquí</p>
+            <h1>Elige una puerta</h1>
+        </header>
+        <section class="gallery" aria-label="Las tres puertas">
+            <a href="{{ url_for('puerta_1') }}" aria-label="Abrir la primera puerta">
+                <img src="{{ url_for('static', filename='1.png') }}" alt="Puerta pixel art dorada">
+            </a>
+            <a href="{{ url_for('puerta_2') }}" aria-label="Abrir la segunda puerta">
+                <img src="{{ url_for('static', filename='2.png') }}" alt="Puerta pixel art naranja y azul">
+            </a>
+            <a href="{{ url_for('puerta_3') }}" aria-label="Abrir la tercera puerta">
+                <img src="{{ url_for('static', filename='3.png') }}" alt="Puerta pixel art de madera y verde">
+            </a>
+        </section>
+    </main>
+</body>
+</html>

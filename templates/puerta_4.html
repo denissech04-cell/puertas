@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ descripcion }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <main class="result-page">
+        <img src="{{ url_for('static', filename=imagen) }}" alt="{{ descripcion }}">
+        {% if mostrar_opciones %}
+        <a class="choose-again" href="{{ url_for('puerta_2') }}">Elegir otra puerta</a>
+        {% endif %}
+        {% if audio_filename %}
+        <audio class="result-audio" controls autoplay>
+            <source src="{{ url_for('static', filename=audio_filename) }}" type="audio/mpeg">
+            Tu navegador no admite la reproducción de audio.
+        </audio>
+        {% endif %}
+    </main>
+</body>
+</html>
